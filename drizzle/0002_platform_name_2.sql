@@ -1,0 +1,1 @@
+ALTER TABLE "settings" ALTER COLUMN "platform_name" SET DEFAULT 'خوارزميات البسيوني في الرياضيات';
