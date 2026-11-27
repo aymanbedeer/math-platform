@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-ar), system-ui, sans-serif;
+}
+
+body {
+  font-family: var(--font-ar), system-ui, sans-serif;
+}
+
+@utility card { @apply rounded-2xl border border-slate-200 bg-white p-4 shadow-sm; }
+@utility btn { @apply inline-flex items-center justify-center gap-1 rounded-xl px-4 py-2 text-sm font-semibold transition disabled:opacity-50 cursor-pointer; }
+@utility btn-primary { @apply btn bg-blue-800 text-white hover:bg-blue-900; }
+@utility btn-light { @apply btn border border-slate-300 bg-white text-slate-800 hover:bg-slate-100; }
+@utility btn-danger { @apply btn bg-rose-600 text-white hover:bg-rose-700; }
+@utility btn-green { @apply btn bg-emerald-600 text-white hover:bg-emerald-700; }
+@utility input { @apply w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-base outline-none focus:border-blue-700 focus:ring-2 focus:ring-blue-100; }
+@utility label { @apply mb-1 block text-sm font-medium text-slate-700; }
+@utility badge { @apply inline-block rounded-full px-2.5 py-0.5 text-xs font-semibold whitespace-nowrap; }
+@utility h1 { @apply text-xl font-bold md:text-2xl; }
+@utility muted { @apply text-sm text-slate-500; }
+@utility tbl { @apply w-full text-sm; }
+.tbl th { @apply border-b border-slate-200 px-3 py-2 text-start font-semibold text-slate-600 whitespace-nowrap; }
+.tbl td { @apply border-b border-slate-100 px-3 py-2 align-middle; }
+
+/* Make printed / selected content harder to copy */
+.protected { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+@media print { .protected { display: none !important; } }
+
+/* Login / forgot-password background: faint graph paper in the logo's navy,
+   soft navy and gold glows, and a large faded copy of the logo in the corner. */
+.auth-bg {
+  min-height: 100dvh;
+  background-color: #f1f2f4; /* plain light gray */
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' opacity='0.08'%3E%3Cg fill='%231f3a93'%3E%3Crect x='10' y='62' width='22' height='22' rx='5'/%3E%3Crect x='39' y='40' width='22' height='44' rx='5'/%3E%3Crect x='68' y='18' width='22' height='66' rx='5'/%3E%3C/g%3E%3Cpath d='M14 50 L44 24 L60 34 L88 8 M76 8 H88 V20' fill='none' stroke='%23e0a526' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' opacity='0.08'%3E%3Cg transform='matrix(-1 0 0 1 100 0)'%3E%3Cg fill='%231f3a93'%3E%3Crect x='10' y='62' width='22' height='22' rx='5'/%3E%3Crect x='39' y='40' width='22' height='44' rx='5'/%3E%3Crect x='68' y='18' width='22' height='66' rx='5'/%3E%3C/g%3E%3Cpath d='M14 50 L44 24 L60 34 L88 8 M76 8 H88 V20' fill='none' stroke='%23e0a526' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/g%3E%3C/svg%3E"),
+    var(--auth-band, linear-gradient(transparent, transparent)),
+    linear-gradient(rgb(31 58 147 / 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(31 58 147 / 0.05) 1px, transparent 1px);
+  background-size: 22rem 22rem, 22rem 22rem, 100% 100%, 28px 28px, 28px 28px;
+  background-position: left -3rem bottom -3rem, right -3rem bottom -3rem, 0 0, center, center;
+  background-repeat: no-repeat, no-repeat, no-repeat, repeat, repeat;
+}
+@media (max-width: 767px) { .auth-bg { background-size: 12rem 12rem, 12rem 12rem, 100% 100%, 24px 24px, 24px 24px; background-position: left -2rem bottom -2rem, right -2rem bottom -2rem, 0 0, center, center; } }
+
+/* Login page: plain light gray in the middle, grid only beside the corner logos */
+.auth-plain-center { --band-edge: 19rem; --auth-band: linear-gradient(90deg, transparent var(--band-edge), #f1f2f4 var(--band-edge), #f1f2f4 calc(100% - var(--band-edge)), transparent calc(100% - var(--band-edge))); }
+@media (max-width: 767px) { .auth-plain-center { --band-edge: 0px; } }
+
+/* Split-screen login: navy brand panel with faint equations */
+.login-panel { background: linear-gradient(160deg, #1f3a93 0%, #13265f 100%); }
+.login-eqs span { position: absolute; white-space: nowrap; direction: ltr; unicode-bidi: isolate; font-family: "Times New Roman", serif; font-style: italic; font-size: 1.75rem; color: rgb(255 255 255 / 0.16); }
+
+/* Login: white margins with the faded logo chart in both bottom corners, split card in the middle */
+.login-shell { min-height: 100dvh; background-color: #fff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' opacity='0.08'%3E%3Cg fill='%231f3a93'%3E%3Crect x='10' y='62' width='22' height='22' rx='5'/%3E%3Crect x='39' y='40' width='22' height='44' rx='5'/%3E%3Crect x='68' y='18' width='22' height='66' rx='5'/%3E%3C/g%3E%3Cpath d='M14 50 L44 24 L60 34 L88 8 M76 8 H88 V20' fill='none' stroke='%23e0a526' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' opacity='0.08'%3E%3Cg transform='matrix(-1 0 0 1 100 0)'%3E%3Cg fill='%231f3a93'%3E%3Crect x='10' y='62' width='22' height='22' rx='5'/%3E%3Crect x='39' y='40' width='22' height='44' rx='5'/%3E%3Crect x='68' y='18' width='22' height='66' rx='5'/%3E%3C/g%3E%3Cpath d='M14 50 L44 24 L60 34 L88 8 M76 8 H88 V20' fill='none' stroke='%23e0a526' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 18rem 18rem, 18rem 18rem; background-position: left -2.5rem bottom -2.5rem, right -2.5rem bottom -2.5rem; background-repeat: no-repeat; }
+@media (max-width: 767px) { .login-shell { background-image: none; } }
